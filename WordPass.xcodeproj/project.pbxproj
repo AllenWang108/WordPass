@@ -1,0 +1,564 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18031A3E20B6AAF0008138A8 /* ITNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18031A3D20B6AAF0008138A8 /* ITNavigationController.swift */; };
+		183258FB20A981E5000D7966 /* NewNoteTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183258FA20A981E5000D7966 /* NewNoteTextViewController.swift */; };
+		1856798C2078753200639BC3 /* MainScreenDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1856798B2078753200639BC3 /* MainScreenDashboardView.swift */; };
+		1858042C2090B2F8004E4A34 /* CardFrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1858042B2090B2F8004E4A34 /* CardFrontViewController.swift */; };
+		1858042E20930449004E4A34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1858042D20930449004E4A34 /* Assets.xcassets */; };
+		1858043020945946004E4A34 /* CardBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1858042F20945946004E4A34 /* CardBackViewController.swift */; };
+		186382DF20987DA300EFA79A /* CardDetailDefinitionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186382DE20987DA300EFA79A /* CardDetailDefinitionCell.swift */; };
+		186382E120987F0400EFA79A /* CardDetailSampleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186382E020987F0400EFA79A /* CardDetailSampleCell.swift */; };
+		186CA68120BEA02800D09D4A /* MyBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CA68020BEA02800D09D4A /* MyBooksViewController.swift */; };
+		186CA68320BEA1FA00D09D4A /* LearningBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CA68220BEA1FA00D09D4A /* LearningBookTableViewCell.swift */; };
+		186CA68520BEA2E100D09D4A /* LearnedBooksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CA68420BEA2E100D09D4A /* LearnedBooksTableViewCell.swift */; };
+		186CA68720BEA36A00D09D4A /* LearnedBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CA68620BEA36A00D09D4A /* LearnedBookCollectionViewCell.swift */; };
+		186D6C562056A3B100072FDF /* 高考核心词汇.json in Resources */ = {isa = PBXBuildFile; fileRef = 186D6C552056A3B100072FDF /* 高考核心词汇.json */; };
+		186D6C582056A3B600072FDF /* 六级核心词汇.json in Resources */ = {isa = PBXBuildFile; fileRef = 186D6C572056A3B600072FDF /* 六级核心词汇.json */; };
+		186D6C5E2056A3C700072FDF /* 托福核心词汇.json in Resources */ = {isa = PBXBuildFile; fileRef = 186D6C5D2056A3C700072FDF /* 托福核心词汇.json */; };
+		186D6C622056A3D400072FDF /* GRE核心词汇.json in Resources */ = {isa = PBXBuildFile; fileRef = 186D6C612056A3D300072FDF /* GRE核心词汇.json */; };
+		186D6C642056A3DB00072FDF /* 专四核心词汇.json in Resources */ = {isa = PBXBuildFile; fileRef = 186D6C632056A3DB00072FDF /* 专四核心词汇.json */; };
+		186D6C662056A3E100072FDF /* 专八核心词汇.json in Resources */ = {isa = PBXBuildFile; fileRef = 186D6C652056A3E100072FDF /* 专八核心词汇.json */; };
+		186D6C682056A40A00072FDF /* EnglishWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D6C672056A40A00072FDF /* EnglishWord.swift */; };
+		186D6C6A2056AF4500072FDF /* BookSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D6C692056AF4500072FDF /* BookSelectionViewController.swift */; };
+		186D6C6C2056AFA500072FDF /* BookSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D6C6B2056AFA500072FDF /* BookSelectionTableViewCell.swift */; };
+		186F718520872A74005BA614 /* FlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F718420872A74005BA614 /* FlashCardViewController.swift */; };
+		1873913A20BBE55C00B2DF94 /* SidebarMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1873913920BBE55C00B2DF94 /* SidebarMenuTableViewCell.swift */; };
+		1873913C20BC03E900B2DF94 /* UserInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1873913B20BC03E900B2DF94 /* UserInfoTableViewController.swift */; };
+		18810465209C44810039BF15 /* CardDetailTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18810464209C44810039BF15 /* CardDetailTitleCell.swift */; };
+		189C02AC205CE78700B07328 /* SAT核心词汇.json in Resources */ = {isa = PBXBuildFile; fileRef = 189C02AB205CE78700B07328 /* SAT核心词汇.json */; };
+		189C02AE205CEAF800B07328 /* 考研核心词汇.json in Resources */ = {isa = PBXBuildFile; fileRef = 189C02AD205CEAF800B07328 /* 考研核心词汇.json */; };
+		189C02B0205CEB0200B07328 /* 雅思核心词汇.json in Resources */ = {isa = PBXBuildFile; fileRef = 189C02AF205CEB0200B07328 /* 雅思核心词汇.json */; };
+		189C02B4205D0A2F00B07328 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C02B3205D0A2F00B07328 /* MainScreenViewController.swift */; };
+		18A7A1E120A42CCF00C73468 /* WordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A7A1E020A42CCF00C73468 /* WordListViewController.swift */; };
+		18A7A1E320A58D7B00C73468 /* WordListDefinitionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A7A1E220A58D7B00C73468 /* WordListDefinitionCell.swift */; };
+		18BBD1A320A1C6430066B6EB /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BBD1A220A1C6430066B6EB /* SummaryViewController.swift */; };
+		18BBD1A520A1DBFF0066B6EB /* SummaryViewWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BBD1A420A1DBFF0066B6EB /* SummaryViewWordCell.swift */; };
+		18C8D9712054FE99005DA30F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8D9702054FE99005DA30F /* AppDelegate.swift */; };
+		18C8D9762054FE99005DA30F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C8D9742054FE99005DA30F /* Main.storyboard */; };
+		18C8D97B2054FE99005DA30F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C8D9792054FE99005DA30F /* LaunchScreen.storyboard */; };
+		18C8D98420550E6D005DA30F /* WordPass.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18C8D98220550E6D005DA30F /* WordPass.xcdatamodeld */; };
+		18C8D986205522AD005DA30F /* 四级核心词汇.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C8D985205522AD005DA30F /* 四级核心词汇.json */; };
+		18C8D98D205525C4005DA30F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8D98C205525C4005DA30F /* Card.swift */; };
+		18CC5B6120B55E3600095F25 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC5B6020B55E3600095F25 /* SWRevealViewController.m */; };
+		18CC5B6320B55FA000095F25 /* SidebarMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC5B6220B55FA000095F25 /* SidebarMenuViewController.swift */; };
+		18F5AD5320BFE88D00BDAD39 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F5AD5220BFE88D00BDAD39 /* Default-568h@2x.png */; };
+		18F68BC320AC308100DDE132 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F68BC220AC308100DDE132 /* CalendarViewController.swift */; };
+		18F68BC520AC350D00DDE132 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F68BC420AC350D00DDE132 /* CalendarCollectionViewCell.swift */; };
+		18F8B3B12076694D00A790A8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8B3B02076694D00A790A8 /* Extensions.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		18031A3D20B6AAF0008138A8 /* ITNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITNavigationController.swift; sourceTree = "<group>"; };
+		183258FA20A981E5000D7966 /* NewNoteTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteTextViewController.swift; sourceTree = "<group>"; };
+		1856798B2078753200639BC3 /* MainScreenDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenDashboardView.swift; sourceTree = "<group>"; };
+		1858042B2090B2F8004E4A34 /* CardFrontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFrontViewController.swift; sourceTree = "<group>"; };
+		1858042D20930449004E4A34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1858042F20945946004E4A34 /* CardBackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CardBackViewController.swift; sourceTree = "<group>"; };
+		186382DE20987DA300EFA79A /* CardDetailDefinitionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailDefinitionCell.swift; sourceTree = "<group>"; };
+		186382E020987F0400EFA79A /* CardDetailSampleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailSampleCell.swift; sourceTree = "<group>"; };
+		186CA68020BEA02800D09D4A /* MyBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBooksViewController.swift; sourceTree = "<group>"; };
+		186CA68220BEA1FA00D09D4A /* LearningBookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningBookTableViewCell.swift; sourceTree = "<group>"; };
+		186CA68420BEA2E100D09D4A /* LearnedBooksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnedBooksTableViewCell.swift; sourceTree = "<group>"; };
+		186CA68620BEA36A00D09D4A /* LearnedBookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnedBookCollectionViewCell.swift; sourceTree = "<group>"; };
+		186D6C552056A3B100072FDF /* 高考核心词汇.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "高考核心词汇.json"; sourceTree = "<group>"; };
+		186D6C572056A3B600072FDF /* 六级核心词汇.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "六级核心词汇.json"; sourceTree = "<group>"; };
+		186D6C5D2056A3C700072FDF /* 托福核心词汇.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "托福核心词汇.json"; sourceTree = "<group>"; };
+		186D6C612056A3D300072FDF /* GRE核心词汇.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GRE核心词汇.json"; sourceTree = "<group>"; };
+		186D6C632056A3DB00072FDF /* 专四核心词汇.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "专四核心词汇.json"; sourceTree = "<group>"; };
+		186D6C652056A3E100072FDF /* 专八核心词汇.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "专八核心词汇.json"; sourceTree = "<group>"; };
+		186D6C672056A40A00072FDF /* EnglishWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishWord.swift; sourceTree = "<group>"; };
+		186D6C692056AF4500072FDF /* BookSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSelectionViewController.swift; sourceTree = "<group>"; };
+		186D6C6B2056AFA500072FDF /* BookSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		186F718420872A74005BA614 /* FlashCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardViewController.swift; sourceTree = "<group>"; };
+		1873913920BBE55C00B2DF94 /* SidebarMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarMenuTableViewCell.swift; sourceTree = "<group>"; };
+		1873913B20BC03E900B2DF94 /* UserInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewController.swift; sourceTree = "<group>"; };
+		18810464209C44810039BF15 /* CardDetailTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailTitleCell.swift; sourceTree = "<group>"; };
+		189C02AB205CE78700B07328 /* SAT核心词汇.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "SAT核心词汇.json"; sourceTree = "<group>"; };
+		189C02AD205CEAF800B07328 /* 考研核心词汇.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "考研核心词汇.json"; sourceTree = "<group>"; };
+		189C02AF205CEB0200B07328 /* 雅思核心词汇.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "雅思核心词汇.json"; sourceTree = "<group>"; };
+		189C02B3205D0A2F00B07328 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		18A7A1E020A42CCF00C73468 /* WordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListViewController.swift; sourceTree = "<group>"; };
+		18A7A1E220A58D7B00C73468 /* WordListDefinitionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListDefinitionCell.swift; sourceTree = "<group>"; };
+		18BBD1A220A1C6430066B6EB /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		18BBD1A420A1DBFF0066B6EB /* SummaryViewWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewWordCell.swift; sourceTree = "<group>"; };
+		18C8D96D2054FE99005DA30F /* WordPass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPass.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18C8D9702054FE99005DA30F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		18C8D9752054FE99005DA30F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		18C8D97A2054FE99005DA30F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		18C8D97C2054FE99005DA30F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18C8D98320550E6D005DA30F /* WordPass.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WordPass.xcdatamodel; sourceTree = "<group>"; };
+		18C8D985205522AD005DA30F /* 四级核心词汇.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "四级核心词汇.json"; sourceTree = "<group>"; };
+		18C8D98C205525C4005DA30F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		18CC5B5E20B55E2200095F25 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		18CC5B5F20B55E3500095F25 /* WordPass-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WordPass-Bridging-Header.h"; sourceTree = "<group>"; };
+		18CC5B6020B55E3600095F25 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		18CC5B6220B55FA000095F25 /* SidebarMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarMenuViewController.swift; sourceTree = "<group>"; };
+		18F5AD5220BFE88D00BDAD39 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		18F68BC220AC308100DDE132 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		18F68BC420AC350D00DDE132 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		18F8B3B02076694D00A790A8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		18C8D96A2054FE99005DA30F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18C8D9642054FE99005DA30F = {
+			isa = PBXGroup;
+			children = (
+				18C8D96F2054FE99005DA30F /* WordPass */,
+				18C8D96E2054FE99005DA30F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		18C8D96E2054FE99005DA30F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18C8D96D2054FE99005DA30F /* WordPass.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18C8D96F2054FE99005DA30F /* WordPass */ = {
+			isa = PBXGroup;
+			children = (
+				18F5AD5120BFE74D00BDAD39 /* Supporting Files */,
+				18F5AD5020BFE72800BDAD39 /* Models */,
+				18F5AD4E20BFE6CB00BDAD39 /* Controllers */,
+				18F5AD4D20BFE63200BDAD39 /* Views */,
+				18CC5B5D20B55DB000095F25 /* SWRevealViewController */,
+				18C8D987205522CE005DA30F /* VocabularyBooks */,
+				18C8D9742054FE99005DA30F /* Main.storyboard */,
+				18C8D9792054FE99005DA30F /* LaunchScreen.storyboard */,
+				18C8D97C2054FE99005DA30F /* Info.plist */,
+			);
+			path = WordPass;
+			sourceTree = "<group>";
+		};
+		18C8D987205522CE005DA30F /* VocabularyBooks */ = {
+			isa = PBXGroup;
+			children = (
+				186D6C572056A3B600072FDF /* 六级核心词汇.json */,
+				189C02AB205CE78700B07328 /* SAT核心词汇.json */,
+				186D6C652056A3E100072FDF /* 专八核心词汇.json */,
+				186D6C5D2056A3C700072FDF /* 托福核心词汇.json */,
+				186D6C612056A3D300072FDF /* GRE核心词汇.json */,
+				186D6C552056A3B100072FDF /* 高考核心词汇.json */,
+				186D6C632056A3DB00072FDF /* 专四核心词汇.json */,
+				189C02AF205CEB0200B07328 /* 雅思核心词汇.json */,
+				189C02AD205CEAF800B07328 /* 考研核心词汇.json */,
+				18C8D985205522AD005DA30F /* 四级核心词汇.json */,
+			);
+			path = VocabularyBooks;
+			sourceTree = "<group>";
+		};
+		18CC5B5D20B55DB000095F25 /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18CC5B6020B55E3600095F25 /* SWRevealViewController.m */,
+				18CC5B5E20B55E2200095F25 /* SWRevealViewController.h */,
+				18CC5B5F20B55E3500095F25 /* WordPass-Bridging-Header.h */,
+			);
+			path = SWRevealViewController;
+			sourceTree = "<group>";
+		};
+		18F5AD4D20BFE63200BDAD39 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				18810464209C44810039BF15 /* CardDetailTitleCell.swift */,
+				186D6C6B2056AFA500072FDF /* BookSelectionTableViewCell.swift */,
+				186382DE20987DA300EFA79A /* CardDetailDefinitionCell.swift */,
+				186382E020987F0400EFA79A /* CardDetailSampleCell.swift */,
+				18BBD1A420A1DBFF0066B6EB /* SummaryViewWordCell.swift */,
+				1856798B2078753200639BC3 /* MainScreenDashboardView.swift */,
+				18F68BC420AC350D00DDE132 /* CalendarCollectionViewCell.swift */,
+				18A7A1E220A58D7B00C73468 /* WordListDefinitionCell.swift */,
+				1873913920BBE55C00B2DF94 /* SidebarMenuTableViewCell.swift */,
+				186CA68220BEA1FA00D09D4A /* LearningBookTableViewCell.swift */,
+				186CA68420BEA2E100D09D4A /* LearnedBooksTableViewCell.swift */,
+				186CA68620BEA36A00D09D4A /* LearnedBookCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		18F5AD4E20BFE6CB00BDAD39 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				186F718420872A74005BA614 /* FlashCardViewController.swift */,
+				186D6C692056AF4500072FDF /* BookSelectionViewController.swift */,
+				189C02B3205D0A2F00B07328 /* MainScreenViewController.swift */,
+				1858042B2090B2F8004E4A34 /* CardFrontViewController.swift */,
+				1858042F20945946004E4A34 /* CardBackViewController.swift */,
+				18BBD1A220A1C6430066B6EB /* SummaryViewController.swift */,
+				18A7A1E020A42CCF00C73468 /* WordListViewController.swift */,
+				183258FA20A981E5000D7966 /* NewNoteTextViewController.swift */,
+				18F68BC220AC308100DDE132 /* CalendarViewController.swift */,
+				18031A3D20B6AAF0008138A8 /* ITNavigationController.swift */,
+				18CC5B6220B55FA000095F25 /* SidebarMenuViewController.swift */,
+				1873913B20BC03E900B2DF94 /* UserInfoTableViewController.swift */,
+				186CA68020BEA02800D09D4A /* MyBooksViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		18F5AD5020BFE72800BDAD39 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				18C8D98C205525C4005DA30F /* Card.swift */,
+				186D6C672056A40A00072FDF /* EnglishWord.swift */,
+				18C8D98220550E6D005DA30F /* WordPass.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		18F5AD5120BFE74D00BDAD39 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				18C8D9702054FE99005DA30F /* AppDelegate.swift */,
+				18F5AD5220BFE88D00BDAD39 /* Default-568h@2x.png */,
+				1858042D20930449004E4A34 /* Assets.xcassets */,
+				18F8B3B02076694D00A790A8 /* Extensions.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18C8D96C2054FE99005DA30F /* WordPass */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18C8D97F2054FE99005DA30F /* Build configuration list for PBXNativeTarget "WordPass" */;
+			buildPhases = (
+				18C8D9692054FE99005DA30F /* Sources */,
+				18C8D96A2054FE99005DA30F /* Frameworks */,
+				18C8D96B2054FE99005DA30F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WordPass;
+			productName = WordPass;
+			productReference = 18C8D96D2054FE99005DA30F /* WordPass.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18C8D9652054FE99005DA30F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = WordPass;
+				TargetAttributes = {
+					18C8D96C2054FE99005DA30F = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0930;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 18C8D9682054FE99005DA30F /* Build configuration list for PBXProject "WordPass" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 18C8D9642054FE99005DA30F;
+			productRefGroup = 18C8D96E2054FE99005DA30F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				18C8D96C2054FE99005DA30F /* WordPass */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		18C8D96B2054FE99005DA30F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				186D6C5E2056A3C700072FDF /* 托福核心词汇.json in Resources */,
+				18C8D97B2054FE99005DA30F /* LaunchScreen.storyboard in Resources */,
+				189C02AC205CE78700B07328 /* SAT核心词汇.json in Resources */,
+				18C8D986205522AD005DA30F /* 四级核心词汇.json in Resources */,
+				189C02B0205CEB0200B07328 /* 雅思核心词汇.json in Resources */,
+				18F5AD5320BFE88D00BDAD39 /* Default-568h@2x.png in Resources */,
+				189C02AE205CEAF800B07328 /* 考研核心词汇.json in Resources */,
+				1858042E20930449004E4A34 /* Assets.xcassets in Resources */,
+				186D6C622056A3D400072FDF /* GRE核心词汇.json in Resources */,
+				186D6C662056A3E100072FDF /* 专八核心词汇.json in Resources */,
+				186D6C642056A3DB00072FDF /* 专四核心词汇.json in Resources */,
+				186D6C562056A3B100072FDF /* 高考核心词汇.json in Resources */,
+				18C8D9762054FE99005DA30F /* Main.storyboard in Resources */,
+				186D6C582056A3B600072FDF /* 六级核心词汇.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18C8D9692054FE99005DA30F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18CC5B6320B55FA000095F25 /* SidebarMenuViewController.swift in Sources */,
+				186382E120987F0400EFA79A /* CardDetailSampleCell.swift in Sources */,
+				186D6C682056A40A00072FDF /* EnglishWord.swift in Sources */,
+				183258FB20A981E5000D7966 /* NewNoteTextViewController.swift in Sources */,
+				18CC5B6120B55E3600095F25 /* SWRevealViewController.m in Sources */,
+				186CA68320BEA1FA00D09D4A /* LearningBookTableViewCell.swift in Sources */,
+				186CA68520BEA2E100D09D4A /* LearnedBooksTableViewCell.swift in Sources */,
+				18A7A1E120A42CCF00C73468 /* WordListViewController.swift in Sources */,
+				1858043020945946004E4A34 /* CardBackViewController.swift in Sources */,
+				18BBD1A320A1C6430066B6EB /* SummaryViewController.swift in Sources */,
+				186CA68720BEA36A00D09D4A /* LearnedBookCollectionViewCell.swift in Sources */,
+				186F718520872A74005BA614 /* FlashCardViewController.swift in Sources */,
+				18A7A1E320A58D7B00C73468 /* WordListDefinitionCell.swift in Sources */,
+				18F68BC520AC350D00DDE132 /* CalendarCollectionViewCell.swift in Sources */,
+				18C8D98D205525C4005DA30F /* Card.swift in Sources */,
+				1856798C2078753200639BC3 /* MainScreenDashboardView.swift in Sources */,
+				189C02B4205D0A2F00B07328 /* MainScreenViewController.swift in Sources */,
+				18BBD1A520A1DBFF0066B6EB /* SummaryViewWordCell.swift in Sources */,
+				18F68BC320AC308100DDE132 /* CalendarViewController.swift in Sources */,
+				1858042C2090B2F8004E4A34 /* CardFrontViewController.swift in Sources */,
+				186CA68120BEA02800D09D4A /* MyBooksViewController.swift in Sources */,
+				186D6C6C2056AFA500072FDF /* BookSelectionTableViewCell.swift in Sources */,
+				18031A3E20B6AAF0008138A8 /* ITNavigationController.swift in Sources */,
+				18C8D98420550E6D005DA30F /* WordPass.xcdatamodeld in Sources */,
+				18C8D9712054FE99005DA30F /* AppDelegate.swift in Sources */,
+				186D6C6A2056AF4500072FDF /* BookSelectionViewController.swift in Sources */,
+				18810465209C44810039BF15 /* CardDetailTitleCell.swift in Sources */,
+				1873913A20BBE55C00B2DF94 /* SidebarMenuTableViewCell.swift in Sources */,
+				18F8B3B12076694D00A790A8 /* Extensions.swift in Sources */,
+				1873913C20BC03E900B2DF94 /* UserInfoTableViewController.swift in Sources */,
+				186382DF20987DA300EFA79A /* CardDetailDefinitionCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		18C8D9742054FE99005DA30F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18C8D9752054FE99005DA30F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		18C8D9792054FE99005DA30F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18C8D97A2054FE99005DA30F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		18C8D97D2054FE99005DA30F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		18C8D97E2054FE99005DA30F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		18C8D9802054FE99005DA30F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 59YL2C7U3X;
+				INFOPLIST_FILE = WordPass/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AllenWang.WordPass;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WordPass/SWRevealViewController/WordPass-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		18C8D9812054FE99005DA30F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 59YL2C7U3X;
+				INFOPLIST_FILE = WordPass/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AllenWang.WordPass;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WordPass/SWRevealViewController/WordPass-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18C8D9682054FE99005DA30F /* Build configuration list for PBXProject "WordPass" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18C8D97D2054FE99005DA30F /* Debug */,
+				18C8D97E2054FE99005DA30F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18C8D97F2054FE99005DA30F /* Build configuration list for PBXNativeTarget "WordPass" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18C8D9802054FE99005DA30F /* Debug */,
+				18C8D9812054FE99005DA30F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		18C8D98220550E6D005DA30F /* WordPass.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				18C8D98320550E6D005DA30F /* WordPass.xcdatamodel */,
+			);
+			currentVersion = 18C8D98320550E6D005DA30F /* WordPass.xcdatamodel */;
+			path = WordPass.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 18C8D9652054FE99005DA30F /* Project object */;
+}
