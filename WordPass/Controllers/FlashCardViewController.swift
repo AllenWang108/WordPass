@@ -22,7 +22,7 @@ class FlashCardViewController: UIViewController {
                 let validIndex = index >= oldValue.count ? 0 : index
                 embeddedCardFront?.card = cards[validIndex]
                 embeddedCardBack?.card = cards[validIndex]
-                if index != oldValue.count || index == 0 {
+                if index == 0 {
                     cardFrontView.isHidden = false
                     titleLabel.text = "单词卡片 \(index + 1)/\(cards.count)"
                 }
@@ -41,10 +41,10 @@ class FlashCardViewController: UIViewController {
     var groupCount = 1
     var index = 0 {
         didSet {
-            if index == cards.count {
+            if index == cards.count || index == 10 {
                 progressView.isHidden = true
                 titleLabel.text = "第 \(groupCount) 组"
-            } else if index > cards.count {
+            } else if index > cards.count || index > 10 {
                 index = 0
                 titleLabel.text = "单词卡片 1/\(cards.count)"
             } else {
