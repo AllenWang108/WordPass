@@ -10,6 +10,7 @@ import UIKit
 
 class CalendarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    // MARK: - Properties
     // 当前选中的日期，初始值为当天的日期
     private var currentDate: Date = Date.init() {
         didSet {
@@ -26,10 +27,13 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     var user: User!
+    
+    // 懒加载用户的学习记录
     private lazy var studyRecords: [Record] = {
         return user.studyRecords?.allObjects as! [Record]
     }()
     
+    // 用户有学习记录的日期
     private var studyDays: [Date] {
         let records = studyRecords.filter {$0.learnedWords?.count != nil}
         var days = [Date]()
@@ -41,8 +45,10 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         return days
     }
     
+    // 当前月份有学习记录的日期对应的indexPath
     private var indexSet: [IndexPath] = []
     
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,6 +78,8 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             collectionViewHeight.constant = collectionView.bounds.width*5/7
         }
     }
+    
+    // MARK: - Outlets
     @IBOutlet var stackViews: [UIStackView]! {
         didSet {
             for view in stackViews {
@@ -101,27 +109,30 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+    // MARK: - Action Methods
+    
     // 左滑获取下个月的日期
-    @objc func swipeLeft() {
+    @objc private func swipeLeft() {
         currentDate = currentDate.dateInNextMonth
         performAnimations(transition: kCATransitionFromRight)
     }
     
     // 右滑获取上个月的日期
-    @objc func swipeRight() {
+    @objc private func swipeRight() {
         currentDate = currentDate.dateInPreviousMonth
         performAnimations(transition: kCATransitionFromLeft)
     }
     
     // 动画过渡效果
-    func performAnimations(transition: String) {
+    private func performAnimations(transition: String) {
         let caTranstion = CATransition.init()
-        caTranstion.duration = 0.5
+        caTranstion.duration = 0.2
         caTranstion.type = kCATransitionPush
         caTranstion.subtype = transition
         self.collectionView.layer.add(caTranstion, forKey: nil)
     }
     
+    // MARK: - UICollectionViewDataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
         return 1
@@ -166,6 +177,8 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         return cell
     }
     
+    // MARK: - Fetch corresponding records
+    
     // 判断能否在当前月份中找到用户背过单词的日期
     private func canFindMatchedDays(with date: Date, at indexPath: IndexPath) -> Bool {
         let currentDay = indexPath.row - date.firstWeekdayInMonth + 1
@@ -189,6 +202,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+    // MARK: - UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCell = collectionView.cellForItem(at: indexPath) as! CalendarCollectionViewCell
         // 标记选中的日期
@@ -226,6 +240,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
 }
 
+// MARK: - Extension of Date
 extension Date {
     var day: Int {
         return Calendar.current.component(.day, from: self)

@@ -180,13 +180,13 @@
 			isa = PBXGroup;
 			children = (
 				18810464209C44810039BF15 /* CardDetailTitleCell.swift */,
+				18A7A1E220A58D7B00C73468 /* WordListDefinitionCell.swift */,
 				186D6C6B2056AFA500072FDF /* BookSelectionTableViewCell.swift */,
 				186382DE20987DA300EFA79A /* CardDetailDefinitionCell.swift */,
 				186382E020987F0400EFA79A /* CardDetailSampleCell.swift */,
 				18BBD1A420A1DBFF0066B6EB /* SummaryViewWordCell.swift */,
 				1856798B2078753200639BC3 /* MainScreenDashboardView.swift */,
 				18F68BC420AC350D00DDE132 /* CalendarCollectionViewCell.swift */,
-				18A7A1E220A58D7B00C73468 /* WordListDefinitionCell.swift */,
 				1873913920BBE55C00B2DF94 /* SidebarMenuTableViewCell.swift */,
 				186CA68220BEA1FA00D09D4A /* LearningBookTableViewCell.swift */,
 				186CA68420BEA2E100D09D4A /* LearnedBooksTableViewCell.swift */,

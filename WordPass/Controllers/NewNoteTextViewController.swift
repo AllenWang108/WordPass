@@ -35,9 +35,11 @@ class NewNoteTextViewController: UIViewController, UITextViewDelegate {
             placeholderLabel.text = ""
         }
     }
-
-    @objc func saveNote() {
+    
+    // 保存笔记
+    @objc private func saveNote() {
         if noteTextView.text.count == 0 {
+            // 提示用户还没有输入文字
             let alertController = UIAlertController(title: "", message: "你还没有输入任何内容哦，是否放弃本次编辑", preferredStyle: .alert)
             let giveUpAction = UIAlertAction(title: "放弃", style: .destructive, handler: { alertAction in
                 // 返回上一个界面
@@ -51,6 +53,7 @@ class NewNoteTextViewController: UIViewController, UITextViewDelegate {
         } else {
             word.note = noteTextView.text
             saveContext()
+            // 提醒用户保存成功
             let alertController = UIAlertController(title: "", message: "保存成功", preferredStyle: .alert)
             present(alertController, animated: true, completion: nil)
             let timer = Timer.init(timeInterval: 2, repeats: false, block: { (timer) in
@@ -63,7 +66,7 @@ class NewNoteTextViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    // UITextViewDelegate
+    // MARK: - UITextViewDelegate
     func textViewDidChange(_ textView: UITextView) {
         if noteTextView.text.count == 0 {
             placeholderLabel.text = "记录下对你有帮助的单词用法..."

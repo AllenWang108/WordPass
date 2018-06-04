@@ -8,9 +8,11 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
 class CardBackViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // MARK: - Properties
     var card: Card?
     var word: Word? {
         didSet {
@@ -30,13 +32,17 @@ class CardBackViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     var user: User!
+    var shouldReloadAudioData: Bool = true
     weak var delegate: CardFrontViewControllerDelegate?
+    private var audioPlayer: AVAudioPlayer!
     
+    // MARK: - Outlets and actions
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var masterButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
+    // 当前单词已掌握
     @IBAction func masterButton(_ sender: UIButton) {
         if let word = word {
             if !word.isMastered {
@@ -54,6 +60,7 @@ class CardBackViewController: UIViewController, UITableViewDelegate, UITableView
         saveContext()
     }
     
+    // 收藏单词
     @IBAction func saveButton(_ sender: UIButton) {
         if let word = word {
             if !word.isSaved {
@@ -69,6 +76,7 @@ class CardBackViewController: UIViewController, UITableViewDelegate, UITableView
         saveContext()
     }
     
+    // 添加笔记
     @IBAction func noteButton(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
@@ -80,10 +88,36 @@ class CardBackViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    // 播放单词的读音
     @IBAction func soundButton(_ sender: UIButton) {
-        
+        let url = URL(string: card?.pronunciation ?? "")
+        if url != nil && shouldReloadAudioData {
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                let urlContents = try? Data(contentsOf: url!)
+                DispatchQueue.main.async {
+                    if let audioData = urlContents, url == URL(string: (self?.card?.pronunciation)!) {
+                        
+                        do {
+                            self?.audioPlayer = try AVAudioPlayer(data: audioData)
+                            self?.shouldReloadAudioData = false
+                            self?.audioPlayer.play()
+                        } catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+        } else {
+            if audioPlayer.isPlaying {
+                audioPlayer.stop()
+            } else {
+                audioPlayer.play()
+            }
+        }
     }
-
+    
+    
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -102,13 +136,15 @@ class CardBackViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.reloadData()
     }
     
+    // MARK: - Update UI
     private func updateUI() {
-        if let card = card {
-            wordLabel.text = card.word
+        if let word = word {
+            wordLabel.text = word.englishWord
             tableView.reloadData()
         }
     }
     
+    // MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         
         return word?.note != nil ? 3 : 2
@@ -160,38 +196,6 @@ class CardBackViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        
-        let footerView = view as! UITableViewHeaderFooterView
-        switch section {
-        case 0:
-            footerView.backgroundView?.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
-        case 1:
-            if word?.note != nil {
-                footerView.backgroundView?.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
-            }
-        default:
-            return
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if word?.note != nil {
-            switch indexPath.section {
-            case 1:
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let newNoteViewController = storyboard.instantiateViewController(withIdentifier: "NewNoteTextViewController") as? NewNoteTextViewController {
-                    
-                    newNoteViewController.word = self.word
-                    newNoteViewController.noteContent = word?.note
-                    self.navigationController!.pushViewController(newNoteViewController, animated: true)
-                }
-            default:
-                return
-            }
-        }
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
@@ -228,12 +232,15 @@ class CardBackViewController: UIViewController, UITableViewDelegate, UITableView
                         cell.translationLabel.isHidden = false
                         cell.soundButton.isHidden = false
                         cell.separatorView.isHidden = false
-                        cell.sampleSentenceLabel.text = card.samples![indexPath.row].englishSentence
-                        cell.translationLabel.text = card.samples![indexPath.row].chineseTranslation
+                        cell.sampleSentenceLabel.text = card.samples![indexPath.row - 1].englishSentence
+                        cell.translationLabel.text = card.samples![indexPath.row - 1].chineseTranslation
+                        cell.audioURL = URL(string: card.samples![indexPath.row - 1].mp3Url ?? "")
+                        cell.shouldReloadAudioData = true
                     } else {
                         cell.sampleSentenceLabel.text = "暂无例句"
                         cell.translationLabel.isHidden = true
                         cell.separatorView.isHidden = true
+                        cell.soundButton.isHidden = true
                     }
                 }
                 
@@ -252,6 +259,40 @@ class CardBackViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.soundButton.isHidden = true
                 cell.separatorView.isHidden = true
                 return cell
+            }
+        }
+    }
+    
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        
+        let footerView = view as! UITableViewHeaderFooterView
+        switch section {
+        case 0:
+            footerView.backgroundView?.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+        case 1:
+            if word?.note != nil {
+                footerView.backgroundView?.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+            }
+        default:
+            return
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if word?.note != nil {
+            switch indexPath.section {
+            case 1:
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let newNoteViewController = storyboard.instantiateViewController(withIdentifier: "NewNoteTextViewController") as? NewNoteTextViewController {
+                    
+                    newNoteViewController.word = self.word
+                    newNoteViewController.noteContent = word?.note
+                    self.navigationController!.pushViewController(newNoteViewController, animated: true)
+                }
+            default:
+                return
             }
         }
     }

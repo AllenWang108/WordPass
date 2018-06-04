@@ -13,7 +13,7 @@ protocol SummaryViewControllerDelegate: class {
 }
 
 class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+
     var words = [Word]() {
         didSet {
             tableView.reloadData()
@@ -21,7 +21,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     weak var delegate: SummaryViewControllerDelegate?
     weak var flashCardViewController: FlashCardViewController?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,7 +50,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         flashCardViewController?.groupCount += 1
     }
     
-    // MARK: - tableViewDateSource
+    // MARK: - UITableViewDateSource
     func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
@@ -73,6 +73,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let headerView = view as! UITableViewHeaderFooterView
         headerView.backgroundView?.backgroundColor = UIColor.white

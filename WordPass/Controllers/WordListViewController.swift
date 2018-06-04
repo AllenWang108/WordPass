@@ -73,20 +73,26 @@ class WordListViewController: UIViewController, UITableViewDelegate, UITableView
             for (index, button) in wordListButtons.enumerated() {
                 button.setTitleColor(#colorLiteral(red: 0.9725490196, green: 0.5803921569, blue: 0.02352941176, alpha: 1), for: .selected)
                 button.backgroundColor = UIColor.white
-                button.addTarget(self, action: #selector(changeAnimation), for: .touchUpInside)
+                button.addTarget(self, action: #selector(switchList), for: .touchUpInside)
                 button.tag = index
             }
             wordListButtons[0].isSelected = true
         }
     }
     
-    @objc func changeAnimation(sender: UIButton) {
+    // 切换单词列表
+    @objc func switchList(sender: UIButton) {
         let index = sender.tag
         let selectedButton = wordListButtons[index]
         let previousButton = wordListButtons[currentIndex]
         selectedButton.backgroundColor = UIColor.white
         selectedButton.isSelected = true
         previousButton.isSelected = false
+        if index > currentIndex {
+            performAnimations(transition: kCATransitionFromRight)
+        } else {
+            performAnimations(transition: kCATransitionFromLeft)
+        }
         currentIndex = index
         
         UIView.animate(withDuration: 0.15, animations: {
@@ -96,6 +102,16 @@ class WordListViewController: UIViewController, UITableViewDelegate, UITableView
         }, completion: nil)
     }
     
+    // 动画过渡效果
+    func performAnimations(transition: String) {
+        let caTranstion = CATransition.init()
+        caTranstion.duration = 0.2
+        caTranstion.type = kCATransitionPush
+        caTranstion.subtype = transition
+        self.tableView.layer.add(caTranstion, forKey: nil)
+    }
+    
+    // MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         if currentWordList.count > 0 {
             tableView.backgroundView?.isHidden = true
@@ -121,6 +137,11 @@ class WordListViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         var swipeConfiguration = UISwipeActionsConfiguration()
         let word = currentWordList[indexPath.row]
@@ -143,10 +164,10 @@ class WordListViewController: UIViewController, UITableViewDelegate, UITableView
                 if self.currentIndex == 2 {
                     tableView.deleteRows(at: [indexPath], with: .automatic)
                 }
-                
-                action.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.5803921569, blue: 0.02352941176, alpha: 1)
+
                 completionHandler(true)
             }
+            recallAction.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.5803921569, blue: 0.02352941176, alpha: 1)
             swipeConfiguration = UISwipeActionsConfiguration(actions: [recallAction])
         }
         return swipeConfiguration

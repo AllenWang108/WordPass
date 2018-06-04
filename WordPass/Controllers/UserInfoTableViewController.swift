@@ -9,14 +9,14 @@
 import UIKit
 import CoreData
 
-class UserInfoTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class UserInfoTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
     // MARK: - Properties and outlets
     var user: User!
     private var pickerView: UIPickerView!
     private var datePickerView: UIDatePicker!
     private var tempContainerString: String!
-    private var indexOfSelectedRow: Int!
+    private var indexOfSelectedRow: Int?
     private var buttonContainerView: UIView!
     private var confirmButton: UIButton!
     private var cancelButton: UIButton!
@@ -46,6 +46,7 @@ class UserInfoTableViewController: UITableViewController, UIImagePickerControlle
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.darkGray,.font: UIFont(name: "Avenir", size: 18.0)!]
         tableView.sectionHeaderHeight = 10
         tableView.tableFooterView = UIView()
+        tableView.keyboardDismissMode = .onDrag
         
         // 显示用户资料
         avatarImageView.image = user.avatar != nil ? UIImage(data: (user.avatar! as Data)) : UIImage(named: "avatar")
@@ -53,14 +54,20 @@ class UserInfoTableViewController: UITableViewController, UIImagePickerControlle
         genderLabel.text = user.gender ? "男" : "女"
         birthdayLabel.text = user.birthday != nil ? user.birthday : ""
         schoolTextField.text = user.school != nil ? user.school : ""
+        professionTextField.text = user.profession != nil ? user.profession : ""
+        nicknameTextField.delegate = self
+        schoolTextField.delegate = self
+        professionTextField.delegate = self
         
+        // 初始化编辑和保存按钮
         editButton.addTarget(self, action: #selector(pickPhoto), for: .touchUpInside)
         saveButton.target = self
         saveButton.action = #selector(saveUserInfo)
         
+        // 初始化选择器和其它按钮
         pickerView = UIPickerView(frame: CGRect(x: 0, y: self.view.bounds.height - 200, width: self.view.bounds.width, height: 200))
         buttonContainerView = UIView(frame: CGRect(x: 0, y: pickerView.frame.origin.y - 30, width: self.view.bounds.width, height: 30))
-        buttonContainerView.backgroundColor = #colorLiteral(red: 0.9008057714, green: 0.8954511285, blue: 0.9049220681, alpha: 1)
+        buttonContainerView.backgroundColor = #colorLiteral(red: 0.9220947623, green: 0.9263622165, blue: 0.9367930293, alpha: 1)
         cancelButton = UIButton(frame: CGRect(x: 10, y: buttonContainerView.frame.origin.y + 5, width: 50, height: 21))
         confirmButton = UIButton(frame: CGRect(x: pickerView.bounds.width - 60, y: buttonContainerView.frame.origin.y + 5, width: 50, height: 21))
         confirmButton.addTarget(self, action: #selector(confirm), for: .touchUpInside)
@@ -69,20 +76,21 @@ class UserInfoTableViewController: UITableViewController, UIImagePickerControlle
         confirmButton.setTitleColor(#colorLiteral(red: 0.9739639163, green: 0.7061158419, blue: 0.1748842001, alpha: 1), for: .normal)
         cancelButton.setTitle("取消", for: .normal)
         cancelButton.setTitleColor(.darkGray, for: .normal)
-        pickerView.backgroundColor = #colorLiteral(red: 0.9008057714, green: 0.8954511285, blue: 0.9049220681, alpha: 1)
+        pickerView.backgroundColor = #colorLiteral(red: 0.9220947623, green: 0.9263622165, blue: 0.9367930293, alpha: 1)
         pickerView.delegate = self
         pickerView.dataSource = self
         
+        // 初始化日期选择器
         datePickerView = UIDatePicker(frame: pickerView.frame)
         datePickerView.datePickerMode = .date
         datePickerView.locale = Locale(identifier: "zh_CN")
-        datePickerView.backgroundColor = #colorLiteral(red: 0.9008057714, green: 0.8954511285, blue: 0.9049220681, alpha: 1)
+        datePickerView.backgroundColor = #colorLiteral(red: 0.9220947623, green: 0.9263622165, blue: 0.9367930293, alpha: 1)
         datePickerView.addTarget(self, action: #selector(getSelectedDate), for: .valueChanged)
     }
     
     // MARK: - Action methods
     // 提示用户选取照片
-    @objc func pickPhoto() {
+    @objc private func pickPhoto() {
         let photoSourceRequestController = UIAlertController(title: "", message: "选择照片来源", preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title: "拍摄头像", style: .default) { (action) in
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -115,7 +123,8 @@ class UserInfoTableViewController: UITableViewController, UIImagePickerControlle
         present(photoSourceRequestController, animated: true, completion: nil)
     }
     
-    @objc func saveUserInfo() {
+    // 保存用户信息
+    @objc private func saveUserInfo() {
         if let avatar = avatarImageView.image, avatar != UIImage(named: "avatar") {
             user.avatar = UIImagePNGRepresentation(avatar)
         }
@@ -138,8 +147,8 @@ class UserInfoTableViewController: UITableViewController, UIImagePickerControlle
         timer.fire()
     }
     
-    @objc func getSelectedDate() {
-        // 获取选中日期的string
+    // 获取选中的日期
+    @objc private func getSelectedDate() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
@@ -147,19 +156,22 @@ class UserInfoTableViewController: UITableViewController, UIImagePickerControlle
         tempContainerString = dateFormatter.string(from: datePickerView.date)
     }
     
-    @objc func confirm() {
+    // 确认按钮相应事件
+    @objc private func confirm() {
         if indexOfSelectedRow == 1 {
             genderLabel.text = tempContainerString
         } else if indexOfSelectedRow == 2 {
             birthdayLabel.text = tempContainerString
         }
-        removeAllSubviewsForSelectedRow(at: indexOfSelectedRow)
+        removeAllSubviewsForSelectedRow(at: indexOfSelectedRow!)
     }
     
-    @objc func cancel() {
-        removeAllSubviewsForSelectedRow(at: indexOfSelectedRow)
+    // 取消按钮相应事件
+    @objc private func cancel() {
+        removeAllSubviewsForSelectedRow(at: indexOfSelectedRow!)
     }
     
+    // 移除所有弹出来的视图
     private func removeAllSubviewsForSelectedRow(at index: Int) {
         buttonContainerView.removeFromSuperview()
         confirmButton.removeFromSuperview()
@@ -200,8 +212,18 @@ class UserInfoTableViewController: UITableViewController, UIImagePickerControlle
         tempContainerString = row == 0 ? "男" : "女"
     }
     
+    // MARK: - UITextFieldDelegate
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if let index = indexOfSelectedRow {
+            removeAllSubviewsForSelectedRow(at: index)
+        }
+    }
+    
     // MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let index = indexOfSelectedRow {
+            removeAllSubviewsForSelectedRow(at: index)
+        }
         indexOfSelectedRow = indexPath.row
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 1 || indexPath.row == 2 {

@@ -26,10 +26,11 @@ class ITNavigationController: UINavigationController {
     private var screenshotImages = [UIImage]()
     // 存放要禁用滑动手势的controller类名的数组
     private var forbiddenArray = [String]()
+    
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         // 创建滑动手势，并默认禁用该手势
         panGestureRec = UIPanGestureRecognizer(target: self, action: #selector(performDragging(_:)))
         self.view.addGestureRecognizer(panGestureRec)
@@ -42,7 +43,7 @@ class ITNavigationController: UINavigationController {
         coverView?.backgroundColor = .black
     }
     
-    // MARK: - Target action methods
+    // MARK: - Action methods
     @objc private func performDragging(_ panGestureRec: UIPanGestureRecognizer) {
         // 如果当前视图是根控制器则直接返回
         if self.visibleViewController == self.viewControllers[0] {
@@ -128,7 +129,7 @@ class ITNavigationController: UINavigationController {
                 // 让coverView完全透明
                 self.coverView.alpha = 0
             }) { (finished) in
-                // 清空view到transform
+                // 清空view的transform
                 self.view.transform = .identity
                 self.screenshotImageView.removeFromSuperview()
                 self.coverView.removeFromSuperview()
@@ -145,13 +146,13 @@ class ITNavigationController: UINavigationController {
     
     // 获取屏幕截图
     private func takeScreenshot() {
-        let rootVC = self.view.window?.rootViewController
+        let rootVC = UserDefaults.standard.bool(forKey: "rootVCSeted") ?self.view.window?.rootViewController : self.visibleViewController
         let size = rootVC?.view.frame.size
         
         if let size = size, let rootVC = rootVC {
             UIGraphicsBeginImageContextWithOptions(size, true, 0.0)
             let rect = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-            rootVC.view.drawHierarchy(in: rect, afterScreenUpdates: false)
+            rootVC.view.drawHierarchy(in: rect, afterScreenUpdates: true)
             let screenshot = UIGraphicsGetImageFromCurrentImageContext()
             if let screenshot = screenshot {
                 self.screenshotImages.append(screenshot)

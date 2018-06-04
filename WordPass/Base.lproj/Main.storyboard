@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5jw-Vt-Zo2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5jw-Vt-Zo2">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -81,7 +81,7 @@
                                             <outlet property="createdByLabel" destination="sXr-k6-e4e" id="R7x-7u-Jj6"/>
                                             <outlet property="thumbnail" destination="XGf-yi-bzI" id="3mL-Em-cVM"/>
                                             <outlet property="wordsCountLabel" destination="0MA-B8-e8B" id="hGG-1H-iUR"/>
-                                            <segue destination="tfs-0k-DPB" kind="unwind" trigger="accessoryAction" unwindAction="showMainScreenWithSegue:" id="uHX-57-475"/>
+                                            <segue destination="tfs-0k-DPB" kind="unwind" unwindAction="showMainScreenWithSegue:" id="2is-Tp-zY7"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -104,7 +104,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YOP-RI-Yna" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="tfs-0k-DPB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3840.8000000000002" y="-658.02098950524737"/>
+            <point key="canvasLocation" x="-180" y="887"/>
         </scene>
         <!--WordPass-->
         <scene sceneID="30V-R2-7dl">
@@ -597,7 +597,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8nF-9A-g6w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="509.60000000000002" y="886.50674662668678"/>
+            <point key="canvasLocation" x="695" y="887"/>
         </scene>
         <!--Word List View Controller-->
         <scene sceneID="obY-5c-vEh">
@@ -798,7 +798,7 @@
                     <viewLayoutGuide key="safeArea" id="bde-Pt-lgN"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1340" y="887"/>
+            <point key="canvasLocation" x="1574" y="887"/>
         </scene>
         <!--单词卡片-->
         <scene sceneID="FHM-UP-W4j">
@@ -878,7 +878,7 @@
         <!--Reveal View Controller-->
         <scene sceneID="1go-bg-eg9">
             <objects>
-                <viewController id="5jw-Vt-Zo2" userLabel="Reveal View Controller" customClass="SWRevealViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SWRevealViewController" id="5jw-Vt-Zo2" userLabel="Reveal View Controller" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cKY-mZ-XmV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1485,7 +1485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qHB-hv-XML" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4780" y="-658.02098950524737"/>
+            <point key="canvasLocation" x="3206" y="-678"/>
         </scene>
         <!--Card Back View Controller-->
         <scene sceneID="VrX-S3-KTw">
@@ -1585,7 +1585,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YRz-hR-ug5">
-                                                    <rect key="frame" x="20" y="5" width="117" height="95.5"/>
+                                                    <rect key="frame" x="20" y="5" width="107.5" height="95.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="音标" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pbq-jS-y7H">
                                                             <rect key="frame" x="0.0" y="0.0" width="37" height="21.5"/>
@@ -1594,8 +1594,8 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adj. 有声望的" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZ8-ET-a3Q">
-                                                            <rect key="frame" x="0.0" y="36.5" width="117" height="24"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <rect key="frame" x="0.0" y="37.5" width="107.5" height="21.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                             <color key="textColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -1900,7 +1900,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hug-if-B7M" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="L01-3H-moS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2901.5999999999999" y="584.25787106446785"/>
+            <point key="canvasLocation" x="3840.8000000000002" y="584.25787106446785"/>
         </scene>
         <!--创建笔记-->
         <scene sceneID="cQd-2H-Q9P">
@@ -1971,7 +1971,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMV-dE-gDk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="510" y="1396"/>
+            <point key="canvasLocation" x="694" y="1415"/>
         </scene>
         <!--我的单词书-->
         <scene sceneID="Fmr-V7-LIB">
@@ -2242,7 +2242,7 @@
         <!--Navigation Controller-->
         <scene sceneID="vrA-GH-qs3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vU2-jF-i2u" customClass="ITNavigationController" customModule="WordPass" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vU2-jF-i2u" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OVg-rl-VwI">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -2256,6 +2256,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g7b-2L-GzP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-431" y="-707"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ALX-Ph-Hhz">
+            <objects>
+                <navigationController storyboardIdentifier="BookSelectionNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="OE5-yk-cNN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QZf-Yo-ywY">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yqD-I3-bGE" kind="relationship" relationship="rootViewController" id="yDj-5j-nkJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Vc-GK-0z1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1164" y="887"/>
         </scene>
     </scenes>
     <resources>

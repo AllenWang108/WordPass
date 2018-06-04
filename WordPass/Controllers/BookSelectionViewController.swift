@@ -21,7 +21,8 @@ class BookSelectionViewController: UIViewController, UITableViewDelegate, UITabl
         
         tableView.delegate = self
         tableView.dataSource = self
-
+        
+        // 获取单词书
         if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
             let request: NSFetchRequest<Book> = Book.fetchRequest()
             let context = appDelegate.persistentContainer.viewContext
@@ -35,6 +36,7 @@ class BookSelectionViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
         if !UserDefaults.standard.bool(forKey: "hasCreatedUser") {
+            // 创建用户
             if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
                 user = User(context: appDelegate.persistentContainer.viewContext)
                 let randomID = 1000000.randomNumber
@@ -55,7 +57,7 @@ class BookSelectionViewController: UIViewController, UITableViewDelegate, UITabl
         navigationController?.hidesBarsOnSwipe = false
     }
     
-    // MARK: - Table view data source
+    // MARK: - UITableViewDataSource
 
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -72,13 +74,6 @@ class BookSelectionViewController: UIViewController, UITableViewDelegate, UITabl
         return "所有单词书(共\(Books.count)本)"
     }
     
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        
-        let headerView = view as! UITableViewHeaderFooterView
-        headerView.textLabel?.textColor = UIColor.darkGray
-        headerView.textLabel?.font = UIFont(name: "Avenir", size: 18.0)
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Book Cell", for: indexPath) as! BookSelectionTableViewCell
         cell.thumbnail.image = UIImage(named: Books[indexPath.row].name!)
@@ -89,4 +84,34 @@ class BookSelectionViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
+    // MARK: - UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        let headerView = view as! UITableViewHeaderFooterView
+        headerView.textLabel?.textColor = UIColor.darkGray
+        headerView.textLabel?.font = UIFont(name: "Avenir", size: 18.0)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if !UserDefaults.standard.bool(forKey: "hasSelectedBook") {
+            let destinationController = storyboard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+            present(destinationController, animated: false, completion: {
+                if let navcon = destinationController.frontViewController as? UINavigationController {
+                    if let frontVC = navcon.visibleViewController as? MainScreenViewController {
+                        let book = self.Books[indexPath.row]
+                        frontVC.user = self.user
+                        frontVC.user?.learningBook = book
+                        frontVC.user?.wordsNeedToLearn = book.wordList
+                        frontVC.wordsNeedToLearn = book.wordList?.allObjects as! [Word]
+                        UserDefaults.standard.set(true, forKey: "hasSelectedBook")
+                        saveContext()
+                        frontVC.updateUI()
+                        frontVC.fetchLearningData()
+                    }
+                }
+            })
+        }
+    }
 }

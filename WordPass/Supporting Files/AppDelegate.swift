@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         
@@ -23,6 +22,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if !isPreloaded {
             preloadData()
             defaults.set(true, forKey: "isPreloaded")
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if !defaults.bool(forKey: "hasSelectedBook") {
+            let navController = storyboard.instantiateViewController(withIdentifier: "BookSelectionNavigationController") as! UINavigationController
+            window?.rootViewController = navController
+        } else {
+            let mainScreenVC = storyboard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+            window?.rootViewController = mainScreenVC
+            defaults.set(true, forKey: "rootVCSeted")
         }
         
         // 状态栏改成白色

@@ -14,6 +14,8 @@ protocol FlashCardViewControllerDelegate: class {
 }
 
 class FlashCardViewController: UIViewController {
+    // MARK: - Properties
+    
     var cards: [Card] = [] {
         didSet {
             if !cards.isEmpty {
@@ -56,13 +58,16 @@ class FlashCardViewController: UIViewController {
         }
     }
     var user: User!
+    var swipe: UISwipeGestureRecognizer!
     weak var mainScreenViewController: MainScreenViewController?
     weak var delegate: FlashCardViewControllerDelegate?
     private var record: Record? {
         get {
+            // 获取用户当天的学习记录
             let date = Date.init()
             return studyRecords.filter({$0.startingTime?.day == date.day && $0.startingTime?.month == date.month && $0.startingTime?.year == date.year}).first
         } set {
+            // 生成新纪录时启动计时器
             self.timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { _ in
                 newValue?.duration += 1
                 saveContext()
@@ -74,6 +79,7 @@ class FlashCardViewController: UIViewController {
     }
     private var timer: Timer?
     
+    // MARK: - Outlets
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
@@ -85,43 +91,37 @@ class FlashCardViewController: UIViewController {
     @IBOutlet weak var cardFrontView: UIView!
     @IBOutlet weak var cardBackView: UIView! {
         didSet {
-            let swipe = UISwipeGestureRecognizer(target: self, action: #selector(nextCard))
+            // 添加左滑手势
+            swipe = UISwipeGestureRecognizer(target: self, action: #selector(nextCard))
             swipe.direction = .left
             cardBackView.addGestureRecognizer(swipe)
         }
     }
-
+    
+    // 切换卡片
     @objc func nextCard() {
         switchView()
         index += 1
+        embeddedCardBack?.shouldReloadAudioData = true
     }
     
+    // MARK: - Embedded view controllers
     private var embeddedCardFront: CardFrontViewController?
     private var embeddedCardBack: CardBackViewController?
     private var embeddedSummaryView: SummaryViewController?
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showCardFront" {
-            if let destinationController = segue.destination as? CardFrontViewController {
-                embeddedCardFront = destinationController
-                destinationController.delegate = self
-            }
-        } else if segue.identifier == "showCardBack" {
-            if let destinationController = segue.destination as? CardBackViewController {
-                embeddedCardBack = destinationController
-                destinationController.user = user
-            }
-        } else if segue.identifier == "showSummaryView" {
-            if let destinationController = segue.destination as? SummaryViewController {
-                embeddedSummaryView = destinationController
-                destinationController.delegate = self
-                destinationController.flashCardViewController = self
-            }
-        }
-    }
-    
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 优先判断swipe手势，如果判断失败再触发pan手势
+        if let gestureRecognizers = self.navigationController?.view.gestureRecognizers {
+            for gestureRec in gestureRecognizers {
+                if let pan = gestureRec as? UIPanGestureRecognizer {
+                    pan.require(toFail: swipe)
+                }
+            }
+        }
         
         navigationController?.navigationBar.tintColor = UIColor.darkGray
         navigationController?.navigationBar.barTintColor = UIColor.white.withAlphaComponent(0.8)
@@ -143,6 +143,7 @@ class FlashCardViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        // 获取用户的学习记录，如果已有当天记录则启动计时器，否则生成新纪录
         let date = Date.init()
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             let context = appDelegate.persistentContainer.viewContext
@@ -166,10 +167,33 @@ class FlashCardViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        // 关闭计时器
         timer?.invalidate()
+    }
+    
+    // MARK: - Prepare segues
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showCardFront" {
+            if let destinationController = segue.destination as? CardFrontViewController {
+                embeddedCardFront = destinationController
+                destinationController.delegate = self
+            }
+        } else if segue.identifier == "showCardBack" {
+            if let destinationController = segue.destination as? CardBackViewController {
+                embeddedCardBack = destinationController
+                destinationController.user = user
+            }
+        } else if segue.identifier == "showSummaryView" {
+            if let destinationController = segue.destination as? SummaryViewController {
+                embeddedSummaryView = destinationController
+                destinationController.delegate = self
+                destinationController.flashCardViewController = self
+            }
+        }
     }
 }
 
+// MARK: - Implementation of delegates
 extension FlashCardViewController: CardFrontViewControllerDelegate, SummaryViewControllerDelegate {
     func continueLearning() {
         summaryView.isHidden = true
@@ -219,6 +243,7 @@ extension FlashCardViewController: CardFrontViewControllerDelegate, SummaryViewC
     }
 }
 
+// MARK: - Public Methods 
 public func getRemoveIndex<T: Equatable>(_ value: T, _ array: [T]) -> Int? {
     var currentIndex: Int?
     //获取指定值在数组中的索引

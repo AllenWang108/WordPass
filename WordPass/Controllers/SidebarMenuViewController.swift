@@ -55,6 +55,7 @@ class SidebarMenuTableViewController: UITableViewController {
     }
     
     // MARK: - Customize status bar
+    // 把状态栏改成白色
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -124,9 +125,8 @@ class SidebarMenuTableViewController: UITableViewController {
             return true
         } else if identifier == "showMyBooks" && sender as? SidebarMenuTableViewCell != nil {
             return true
-        } else {
-            return false
         }
+        return false
     }
 }
 

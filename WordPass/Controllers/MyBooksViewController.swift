@@ -33,7 +33,7 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
         bookSelectionButton.action = #selector(selectBook)
     }
     
-    @objc func selectBook() {
+    @objc private func selectBook() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let bookSelectionViewController = storyboard.instantiateViewController(withIdentifier: "BookSelectionViewController") as? BookSelectionViewController {
             self.navigationController?.pushViewController(bookSelectionViewController, animated: true)
@@ -75,8 +75,6 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    
-    
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 0:
@@ -98,8 +96,10 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 }
 
+
 extension Double {
-    func roundTo(place: Int) -> Double {
+    // 取小数点后的几位有效数字
+    public func roundTo(place: Int) -> Double {
         let divisor = pow(10.0, Double(place))
         return (self * divisor).rounded()/divisor
     }
