@@ -197,7 +197,9 @@ class ITNavigationController: UINavigationController {
         self.panGestureRec.isEnabled = gestureEnabled
         
         // pop时移除最后一张截图
-        screenshotImages.removeLast()
+        if !screenshotImages.isEmpty {
+            screenshotImages.removeLast()
+        }
         return super.popViewController(animated: animated)
     }
     

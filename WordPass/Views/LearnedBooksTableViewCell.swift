@@ -35,7 +35,6 @@ class LearnedBooksTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
         collectionView.backgroundView?.isHidden = books.count > 0 ? true : false
         return 1
     }

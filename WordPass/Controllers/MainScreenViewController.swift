@@ -49,17 +49,15 @@ class MainScreenViewController: UIViewController, FlashCardViewControllerDelegat
     lazy var wordsNeedToLearn: [Word] = {
         if let user = user {
             return user.wordsNeedToLearn?.allObjects as! [Word]
-        } else {
-            return [Word]()
         }
+        return [Word]()
     }()
     // 懒加载用户正在学习的单词数组
     lazy var learningWords: [Word] = {
         if let user = user {
             return user.learningWords?.allObjects as! [Word]
-        } else {
-            return [Word]()
         }
+        return [Word]()
     }()
     
     @IBOutlet weak var menuButton: UIBarButtonItem!

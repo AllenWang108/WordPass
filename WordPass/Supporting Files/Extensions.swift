@@ -40,3 +40,7 @@ extension Int {
         }
     }
 }
+
+extension Notification.Name {
+    static let WPPlayAudio = Notification.Name("WPPlayAudioNotification")
+}

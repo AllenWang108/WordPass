@@ -12,7 +12,8 @@ import AVFoundation
 class CardDetailSampleCell: UITableViewCell {
     var audioURL: URL?
     var shouldReloadAudioData: Bool!
-    private var audioPlayer: AVAudioPlayer!
+    var indexPath: IndexPath!
+    var audioPlayer: AVAudioPlayer?
     
     @IBOutlet weak var sampleSentenceLabel: UILabel! {
         didSet {
@@ -37,20 +38,27 @@ class CardDetailSampleCell: UITableViewCell {
                         do {
                             self?.audioPlayer = try AVAudioPlayer(data: audioData)
                             self?.shouldReloadAudioData = false
-                            self?.audioPlayer.play()
+                            if self?.audioPlayer != nil {
+                                self?.playAudio(with: (self?.audioPlayer)!)
+                            }
                         } catch {
                             print(error)
                         }
                     }
                 }
             }
-        } else if !shouldReloadAudioData {
+        } else if !shouldReloadAudioData, let audioPlayer = audioPlayer {
             if audioPlayer.isPlaying {
                 audioPlayer.stop()
             } else {
-                audioPlayer.play()
+                playAudio(with: audioPlayer)
             }
         }
     }
     
+    func playAudio(with audioPlayer: AVAudioPlayer) {
+        audioPlayer.play()
+        // 发送通知让tableView停止其它正在播放的音频
+        NotificationCenter.default.post(name: .WPPlayAudio, object: self, userInfo: ["indexPath": indexPath])
+    }
 }

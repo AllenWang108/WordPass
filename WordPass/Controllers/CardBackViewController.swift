@@ -81,7 +81,8 @@ class CardBackViewController: UIViewController, UITableViewDelegate, UITableView
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         if let newNoteViewController = storyboard.instantiateViewController(withIdentifier: "NewNoteTextViewController") as? NewNoteTextViewController {
-            
+            let section = word?.note != nil ? 2 : 1
+            stopPlayingAudio(forCellsAt: section)
             newNoteViewController.word = self.word
             newNoteViewController.noteContent = word?.note
             self.navigationController!.pushViewController(newNoteViewController, animated: true)
@@ -130,17 +131,44 @@ class CardBackViewController: UIViewController, UITableViewDelegate, UITableView
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 20.0))
         footerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         tableView.tableFooterView = footerView
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(stopPlayingAudio(with:)), name: .WPPlayAudio, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
     
+    // 当有一个audioPlayer在播放声音时停止其它的播放
+    @objc func stopPlayingAudio(with notification: Notification) {
+        guard let userInfo = notification.userInfo, let indexPath = userInfo["indexPath"] as? IndexPath else {
+            return
+        }
+
+        stopPlayingAudio(forCellsAt: indexPath.section, exceptForCellAt: indexPath.row)
+    }
+    
+    private func stopPlayingAudio(forCellsAt section: Int, exceptForCellAt row: Int = -1) {
+        guard let samples = card?.samples else {
+            return
+        }
+        
+        for index in 1...samples.count {
+            if let cell = tableView.cellForRow(at: IndexPath(row: index, section: section)) as? CardDetailSampleCell, let audioPlayer = cell.audioPlayer {
+                if cell.indexPath.row != row && audioPlayer.isPlaying {
+                    audioPlayer.stop()
+                }
+            }
+        }
+    }
+    
     // MARK: - Update UI
     private func updateUI() {
         if let word = word {
+            let section = word.note != nil ? 2 : 1
             wordLabel.text = word.englishWord
             tableView.reloadData()
+            stopPlayingAudio(forCellsAt: section)
         }
     }
     
@@ -236,6 +264,7 @@ class CardBackViewController: UIViewController, UITableViewDelegate, UITableView
                         cell.translationLabel.text = card.samples![indexPath.row - 1].chineseTranslation
                         cell.audioURL = URL(string: card.samples![indexPath.row - 1].mp3Url ?? "")
                         cell.shouldReloadAudioData = true
+                        cell.indexPath = indexPath
                     } else {
                         cell.sampleSentenceLabel.text = "暂无例句"
                         cell.translationLabel.isHidden = true

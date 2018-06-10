@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,6 +35,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.set(true, forKey: "rootVCSeted")
         }
         
+        
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+//            
+//            if granted {
+//            print("User notifications are allowed.")
+//            } else {
+//            print("User notifications are not allowed.")
+//            }
+//        }
         // 状态栏改成白色
         // UIApplication.shared.statusBarStyle = .lightContent
         

@@ -44,8 +44,6 @@ struct Card: Codable {
     }
 }
 
-
-    
 struct Definition: Codable {
     var type: String
     var meaning: String
